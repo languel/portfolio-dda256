@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-10.png
+preview: media/project-10-preview.png
 embed: sketch/index.html
 alt: Screenshot of the cutout collage p5.js sketch
 summary: Cut and arrange image fragments into a surrealist collage.

@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-03.png
+preview: media/project-03-preview.png
 embed: sketch/index.html
 alt: Screenshot of the simple particles p5.js sketch
 summary: The minimal particle class: position, velocity, and a draw loop.
@@ -51,7 +52,7 @@ let dot1 = new Particle(); //
 let dot2;
 
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(windowWidth, windowHeight);
   background(bgColor);
 
   dot1 = ne

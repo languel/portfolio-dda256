@@ -4,8 +4,9 @@ let maskImg;
 let maskBrushSize = 15;
 
 async function setup() {
-  createCanvas(500, 700);
+  createCanvas(windowWidth, windowHeight);
   maskImg = createGraphics(width,height);
+  maskImg.canvas.hidden = true;
   imgSrc = await loadImage(imgName); //sampled, ref
   img = createImage(width,height); //active temp image which always starts with ref
   
@@ -30,4 +31,14 @@ function draw() {
   
   image(img,0,0,width,height);
   // image(maskImg,0,0,width,height);
+}
+function windowResized() {
+  if (!maskImg) return;
+  const previousMask = maskImg.get();
+  resizeCanvas(windowWidth, windowHeight);
+  maskImg.remove();
+  maskImg = createGraphics(width, height);
+  maskImg.canvas.hidden = true;
+  maskImg.image(previousMask, 0, 0, width, height);
+  img = createImage(width, height);
 }

@@ -2,7 +2,7 @@ let imgFile = "assets/seurat-ref.png";
 let img;
 
 async function setup() {
-  createCanvas(600, 600);
+  createCanvas(windowWidth, windowHeight);
   background('bisque');
   img = await loadImage(imgFile);
   image(img,0,0,width,height);

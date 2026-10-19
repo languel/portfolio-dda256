@@ -2,7 +2,7 @@ let bgColor = 'gold';
 let fgColor = 'red';
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   background(bgColor);
 }
 

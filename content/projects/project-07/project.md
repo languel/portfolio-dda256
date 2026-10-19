@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-07.png
+preview: media/project-07-preview.png
 embed: sketch/index.html
 alt: Screenshot of the image brush p5.js sketch
 summary: Paint with color sampled from a reference image (Seurat).

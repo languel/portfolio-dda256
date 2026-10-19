@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-08.png
+preview: media/project-08-preview.png
 embed: sketch/index.html
 alt: Screenshot of the random image sampling p5.js sketch
 summary: Random samples from a reference image rebuild it as a field of dots.
@@ -19,7 +20,7 @@ let imgFile = "assets/seurat-ref.png";
 let img;
 
 async function setup() {
-  createCanvas(600, 600);
+  createCanvas(windowWidth, windowHeight);
   background('bisque');
   img = await loadImage(imgFile);
   image(img,0,0,width,height);

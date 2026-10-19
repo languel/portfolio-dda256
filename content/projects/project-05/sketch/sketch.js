@@ -407,7 +407,3 @@ function keyPressed() {
     paintSize = 1;
   }
 }
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}

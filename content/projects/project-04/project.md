@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-04.png
+preview: media/project-04-preview.png
 embed: sketch/index.html
 alt: Screenshot of the particle interactions p5.js sketch
 summary: Particles that react to the pointer and to each other.

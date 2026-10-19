@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-06.png
+preview: media/project-06-preview.png
 embed: sketch/index.html
 alt: Screenshot of the interactive minimal avatar p5.js sketch
 summary: A minimal character that responds to clicks and movement.

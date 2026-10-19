@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-02.png
+preview: media/project-02-preview.png
 embed: sketch/index.html
 alt: Screenshot of the dynamic brush p5.js sketch
 summary: A simple brush whose size follows the distance the mouse travels each frame.
@@ -19,7 +20,7 @@ let bgColor = 'gold';
 let fgColor = 'red';
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   background(bgColor);
 }
 

@@ -34,7 +34,7 @@ let dot1 = new Particle(); //
 let dot2;
 
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(windowWidth, windowHeight);
   background(bgColor);
 
   dot1 = new Particle();

@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-01.png
+preview: media/project-01-preview.png
 embed: sketch/index.html
 alt: Screenshot of the expressive brush p5.js sketch
 summary: A drag-driven line brush: stroke color and shape respond to mouse speed.
@@ -20,7 +21,7 @@ let fgColor1 = "gold";
 let fgColor2 = "pink";
 
 setup = () => { //modern ES6 js syntax
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   background(bgColor);
 };
 

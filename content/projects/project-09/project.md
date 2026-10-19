@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-09.png
+preview: media/project-09-preview.png
 embed: sketch/index.html
 alt: Screenshot of the image repaint grid p5.js sketch
 summary: A grid of shapes repaints the reference image cell by cell.

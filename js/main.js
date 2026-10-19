@@ -14,7 +14,6 @@
   const featureMeta = document.querySelector("#feature-meta");
   const featureDescription = document.querySelector("#feature-description");
   const featureBody = document.querySelector("#feature-body");
-  const featureEmbed = document.querySelector("#feature-embed");
   const featureGallery = document.querySelector("#feature-gallery");
   const featureMedium = document.querySelector("#feature-medium");
   const featureYear = document.querySelector("#feature-year");
@@ -40,7 +39,6 @@
     !featureMeta ||
     !featureDescription ||
     !featureBody ||
-    !featureEmbed ||
     !featureGallery ||
     !featureMedium ||
     !featureYear ||
@@ -181,6 +179,7 @@
       directory: projectDirectory,
       bodyDirectory: bodyDirectory || projectDirectory,
       embed: fields.embed ? new URL(fields.embed, projectDirectory).href : "",
+      preview: fields.preview ? new URL(fields.preview, projectDirectory).href : media[0],
       media,
     };
   };
@@ -371,17 +370,43 @@
     });
   };
 
-  const renderEmbed = (project) => {
-    featureEmbed.replaceChildren();
-    if (!project.embed) return;
+  const renderPreview = (project) => {
+    featureMedia.replaceChildren();
+    const image = createMediaElement(project.preview, project.alt, { detail: true });
+    if (!project.embed) {
+      featureMedia.append(image);
+      return;
+    }
 
-    const iframe = document.createElement("iframe");
-    iframe.src = project.embed;
-    iframe.title = `${project.title} embedded sketch`;
-    iframe.loading = "lazy";
-    iframe.allow = "autoplay; fullscreen";
-    iframe.referrerPolicy = "no-referrer";
-    featureEmbed.append(iframe);
+    const launch = document.createElement("button");
+    launch.type = "button";
+    launch.className = "sketch-launch";
+    launch.setAttribute("aria-label", `Run ${project.title} sketch`);
+    const label = document.createElement("span");
+    label.className = "sketch-launch__label";
+    label.textContent = "▶ Run sketch";
+    launch.append(image, label);
+    launch.addEventListener("click", () => {
+      const player = document.createElement("div");
+      player.className = "sketch-player";
+      const iframe = document.createElement("iframe");
+      iframe.title = `${project.title} interactive sketch`;
+      iframe.allow = "autoplay; fullscreen";
+      iframe.referrerPolicy = "no-referrer";
+      iframe.src = project.embed;
+      iframe.addEventListener("load", () => iframe.focus());
+      const stop = document.createElement("button");
+      stop.type = "button";
+      stop.className = "sketch-player__stop";
+      stop.textContent = "Back to preview";
+      stop.addEventListener("click", () => {
+        renderPreview(project);
+        featureMedia.querySelector("button")?.focus();
+      });
+      player.append(iframe, stop);
+      featureMedia.replaceChildren(player);
+    });
+    featureMedia.append(launch);
   };
 
   const renderGallery = (project) => {
@@ -412,7 +437,7 @@
     });
 
     featureMedia.classList.add("is-changing");
-    featureMedia.replaceChildren(createMediaElement(project.media[0], project.alt, { detail: true }));
+    renderPreview(project);
     featureIndex.textContent = `Project ${project.index}`;
     featureTitle.textContent = project.title;
     featureMeta.textContent = project.meta;
@@ -422,7 +447,6 @@
     featureSeries.textContent = project.series;
     renderMarkdown(bodyWithoutSummary(project), featureBody, project.bodyDirectory);
     renderMath(featureBody);
-    renderEmbed(project);
     renderGallery(project);
     updateDocumentTitle(project.title);
 
@@ -514,6 +538,7 @@
   };
 
   const showGrid = () => {
+    if (projects[activeIndex]) renderPreview(projects[activeIndex]);
     main.dataset.view = "grid";
     header.dataset.view = "grid";
     gridSection.hidden = false;
@@ -537,6 +562,7 @@
   };
 
   const showAbout = () => {
+    if (projects[activeIndex]) renderPreview(projects[activeIndex]);
     main.dataset.view = "about";
     header.dataset.view = "about";
     gridSection.hidden = true;

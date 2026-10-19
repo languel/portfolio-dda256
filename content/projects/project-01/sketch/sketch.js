@@ -3,7 +3,7 @@ let fgColor1 = "gold";
 let fgColor2 = "pink";
 
 setup = () => { //modern ES6 js syntax
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   background(bgColor);
 };
 

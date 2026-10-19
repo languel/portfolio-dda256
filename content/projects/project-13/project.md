@@ -6,8 +6,9 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-13.png
+preview: media/project-13-preview.png
 embed: sketch/index.html
-alt: Screenshot of the working with video p5.js sketch
+alt: Birds in flight at sunset, a frame from the video used in the sketch
 summary: Load and manipulate video frames in p5.js.
 ---
 Load and manipulate video frames in p5.js.
@@ -21,7 +22,7 @@ let url = "https://upload.wikimedia.org/wikipedia/commons/1/15/Roundhay_Garden_S
 let video1,video2;
 
 async function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   video1 = await createVideo(url);
   video1.loop();
   video1.hide();

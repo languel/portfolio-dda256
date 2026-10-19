@@ -6,6 +6,7 @@ medium: p5.js
 year: 2026
 series: FA26 DDA256
 media: media/project-11.png
+preview: media/project-11-preview.png
 embed: sketch/index.html
 alt: Screenshot of the reveal image p5.js sketch
 summary: Draw with a brush to reveal an image hidden under a mask.
@@ -21,7 +22,7 @@ let maskImg;
 let maskBrushSize = 15;
 
 async function setup() {
-  createCanvas(500, 700);
+  createCanvas(windowWidth, windowHeight);
   maskImg = createGraphics(width,height);
   imgSrc = await loadImage(imgName); //sampled, ref
   img = createImage(width,height); //active temp image which always starts with ref
