@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#151515" />
+    <meta
+      name="description"
+      content="Class examples for DDA256 (Fall 2026), built with p5.js."
+    />
+    <meta property="og:title" content="DDA256 — p5.js Class Examples" />
+    <meta
+      property="og:description"
+      content="Interactive p5.js examples from DDA256."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="content/projects/project-01/media/project-01.png" />
+    <title>DDA256 — p5.js Class Examples</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css"
+      integrity="sha384-JctiRyLzXCrSoOOzFlSoWLdyzQl7OrrRnhyeBmzB6ZWtcjccUyc8lCQJqIbs3uQX"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.js"
+      integrity="sha384-+7Keh381hSkXmXqnjC0JBM/kzsN6TFj+wMKychSLjTvJ8/0ElMde2uKl8i6p6Buj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/contrib/auto-render.min.js"
+      integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#work">Skip to work</a>
+
+    <header class="site-header" data-view="grid">
+      <a class="wordmark" href="#top" aria-label="Portfolio home">
+        <span class="site-icon site-icon--grid" aria-hidden="true">▦</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="site-nav__link site-nav__link--icon" href="#about" aria-label="About">
+          <span class="site-icon site-icon--person" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="8" r="3.1" />
+              <path d="M5.5 20c.9-3.1 3.2-4.8 6.5-4.8s5.6 1.7 6.5 4.8" />
+            </svg>
+          </span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="top" data-view="grid">
+      <section id="work" class="portfolio-grid-view" aria-label="Selected work">
+        <div class="project-grid" data-project-grid></div>
+      </section>
+
+      <section id="project-detail" class="portfolio-stage" aria-label="Project detail" hidden>
+        <div class="carousel-rail" aria-label="Project carousel">
+          <button class="carousel-control" type="button" data-prev aria-label="Previous project">
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <path d="M14.5 5 7.5 12l7 7" />
+            </svg>
+          </button>
+
+          <div class="thumbnail-viewport" data-project-rail>
+            <div class="thumbnail-track" role="tablist" aria-label="Projects"></div>
+          </div>
+
+          <button class="carousel-control" type="button" data-next aria-label="Next project">
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <path d="m9.5 5 7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <article id="project-stage" class="project-feature" aria-live="polite" aria-atomic="true">
+          <figure class="project-feature__image-frame">
+            <div id="feature-media" class="project-feature__media" aria-live="polite"></div>
+          </figure>
+
+          <div class="project-feature__details">
+            <div class="project-feature__heading">
+              <p id="feature-index" class="project-feature__index">Project 01</p>
+              <h1 id="feature-title">Project 01</h1>
+              <p id="feature-meta" class="project-feature__meta">Digital study · 2026</p>
+              <p id="feature-description" class="project-feature__description">
+                A study of figures moving through an impossible threshold, built from hard edges, dither, and a single field of light.
+              </p>
+            </div>
+
+            <dl class="project-feature__facts">
+              <div>
+                <dt>Medium</dt>
+                <dd id="feature-medium">Bitmap / 1-bit</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd id="feature-year">2026</dd>
+              </div>
+              <div>
+                <dt>Series</dt>
+                <dd id="feature-series">Thresholds</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div id="feature-body" class="project-feature__body" aria-label="Project notes"></div>
+          <div id="feature-embed" class="project-feature__embed" aria-live="polite"></div>
+          <div id="feature-gallery" class="project-feature__gallery" aria-label="Additional project media"></div>
+        </article>
+      </section>
+
+      <section id="about" class="about-page" aria-labelledby="about-title" hidden>
+        <div class="about-page__bio">
+          <p class="about-page__index">About</p>
+          <h1 id="about-title" tabindex="-1">p5.js examples from DDA256 (Fall 2026).</h1>
+          <p>
+            Thirteen worked examples from class: brushes, particle systems, image sampling, collage, text, and video.
+          </p>
+          <p>
+            Every sketch runs in the page and its full source is in the repository.
+            Originals are in the <a href="https://editor.p5js.org/lborisso/collections/82rOA1jdy">p5.js editor collection</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Display settings">
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-label="Switch to light mode"
+        aria-pressed="false"
+      >
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="3.5" />
+          <path d="M12 2.5v2M12 19.5v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2.5 12h2M19.5 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M19.2 15.1A7.5 7.5 0 0 1 8.9 4.8 7.8 7.8 0 1 0 19.2 15.1Z" />
+        </svg>
+      </button>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+  </body>
+</html>
