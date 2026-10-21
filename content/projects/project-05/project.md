@@ -8,6 +8,7 @@ series: FA26 DDA256
 media: media/project-05.png
 preview: media/project-05-preview.png
 embed: sketch/index.html
+source: sketch/sketch.js
 alt: Screenshot of the pollock splat simulation p5.js sketch
 summary: Gesture-driven paint splatters in the spirit of Jackson Pollock.
 ---

@@ -8,6 +8,7 @@ series: FA26 DDA256
 media: media/project-03.png
 preview: media/project-03-preview.png
 embed: sketch/index.html
+source: sketch/sketch.js
 alt: Screenshot of the simple particles p5.js sketch
 summary: The minimal particle class: position, velocity, and a draw loop.
 ---

@@ -8,6 +8,7 @@ series: FA26 DDA256
 media: media/project-12.png
 preview: media/project-12-preview.png
 embed: sketch/index.html
+source: sketch/sketch.js
 alt: Screenshot of the concrete poem tool p5.js sketch
 summary: Compose concrete poetry with a dot-matrix typeface.
 ---

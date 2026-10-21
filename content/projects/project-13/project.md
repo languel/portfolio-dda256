@@ -8,6 +8,7 @@ series: FA26 DDA256
 media: media/project-13.png
 preview: media/project-13-preview.png
 embed: sketch/index.html
+source: sketch/sketch.js
 alt: Birds in flight at sunset, a frame from the video used in the sketch
 summary: Load and manipulate video frames in p5.js.
 ---

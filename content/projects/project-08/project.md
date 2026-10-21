@@ -8,6 +8,7 @@ series: FA26 DDA256
 media: media/project-08.png
 preview: media/project-08-preview.png
 embed: sketch/index.html
+source: sketch/sketch.js
 alt: Screenshot of the random image sampling p5.js sketch
 summary: Random samples from a reference image rebuild it as a field of dots.
 ---

@@ -8,6 +8,7 @@ series: FA26 DDA256
 media: media/project-01.png
 preview: media/project-01-preview.png
 embed: sketch/index.html
+source: sketch/sketch.js
 alt: Screenshot of the expressive brush p5.js sketch
 summary: A drag-driven line brush: stroke color and shape respond to mouse speed.
 ---

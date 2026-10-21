@@ -563,11 +563,13 @@ main {
 }
 
 .project-feature {
-  margin-top: 3px;
+  width: min(100%, 960px, max(18rem, calc(100svh - 10rem)));
+  min-width: 0;
+  margin: 3px auto 0;
 }
 
 .project-feature__image-frame {
-  width: min(100%, 960px, max(18rem, calc(100svh - 10rem)));
+  width: 100%;
   aspect-ratio: 1;
   margin: clamp(1rem, 3vw, 2rem) auto;
   overflow: hidden;
@@ -599,9 +601,9 @@ main {
 
 .project-feature__details {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.75fr);
-  gap: clamp(1.5rem, 5vw, 6rem);
-  padding: 0.85rem calc(var(--header-height) + var(--pad)) 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1rem 0 0;
   border-top: 1px solid var(--line);
 }
 
@@ -638,8 +640,8 @@ main {
 
 .project-feature__body {
   width: 100%;
-  max-width: var(--detail-content-max);
-  padding: clamp(2rem, 4.5vw, 3.75rem) calc(var(--header-height) + var(--pad)) 0;
+  min-width: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 0;
   color: var(--copy);
 }
 
@@ -664,19 +666,55 @@ main {
   text-decoration-color: var(--text);
 }
 
-.project-feature__body pre {
-  max-width: 100%;
+.code-block {
+  position: relative;
+  min-width: 0;
   margin: 1.5rem 0;
-  overflow-x: auto;
+}
+
+.project-feature__body pre {
+  width: 100%;
+  max-height: clamp(12rem, 55svh, 32rem);
+  margin: 0;
+  overflow: auto;
+  scrollbar-gutter: stable;
   border: 1px solid var(--line);
-  padding: 0.85rem 0.95rem;
+  padding: 2.75rem 1rem 1rem;
   color: var(--text);
   background: var(--surface);
   font-family: var(--mono);
-  font-size: 0.72rem;
-  line-height: 1.6;
+  font-size: 0.75rem;
+  line-height: 1.65;
   white-space: pre;
 }
+
+.code-block__copy {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.75rem;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: var(--surface);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, color 160ms ease;
+}
+
+.code-block:hover .code-block__copy,
+.code-block:focus-within .code-block__copy,
+.code-block__copy:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.code-block__copy:hover { color: var(--text); }
+.code-block__copy svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .project-feature__body code {
   font-family: var(--mono);
@@ -714,26 +752,55 @@ main {
 
 .sketch-launch { cursor: pointer; }
 .sketch-launch:focus-visible { outline: 2px solid var(--text); outline-offset: -4px; }
-.sketch-launch__label,
+.sketch-launch__label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  border: 1px solid #ffffff60;
+  border-radius: 50%;
+  color: #fff;
+  background: #151515b3;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: background 160ms ease;
+}
+.sketch-launch__label svg { width: 1.5rem; height: 1.5rem; fill: currentColor; transform: translateX(-2px); }
+.sketch-launch:hover .sketch-launch__label { background: #151515e6; }
 .sketch-player__stop {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  border: 1px solid #ffffff50;
-  padding: 0.65rem 0.9rem;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid #ffffff40;
+  border-radius: 50%;
   color: #fff;
-  background: #151515e6;
-  font-family: var(--mono);
-  font-size: 0.75rem;
+  background: #151515b3;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
 }
-.sketch-player__stop { top: 0.75rem; right: 0.75rem; bottom: auto; cursor: pointer; }
+.sketch-player__stop svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.sketch-player:hover .sketch-player__stop,
+.sketch-player__stop:focus-visible { opacity: 1; pointer-events: auto; }
+@media (hover: none) {
+  .code-block__copy,
+  .sketch-player__stop { opacity: 1; pointer-events: auto; }
+}
 .sketch-player iframe { display: block; width: 100%; height: 100%; border: 0; }
 
 .project-feature__gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   width: 100%;
-  max-width: var(--detail-content-max);
+  min-width: 0;
   gap: 3px;
   margin-top: clamp(1.6rem, 4vw, 3rem);
 }

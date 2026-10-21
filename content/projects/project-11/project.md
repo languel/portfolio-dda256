@@ -8,6 +8,7 @@ series: FA26 DDA256
 media: media/project-11.png
 preview: media/project-11-preview.png
 embed: sketch/index.html
+source: sketch/sketch.js
 alt: Screenshot of the reveal image p5.js sketch
 summary: Draw with a brush to reveal an image hidden under a mask.
 ---

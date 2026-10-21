@@ -8,6 +8,7 @@ series: FA26 DDA256
 media: media/project-02.png
 preview: media/project-02-preview.png
 embed: sketch/index.html
+source: sketch/sketch.js
 alt: Screenshot of the dynamic brush p5.js sketch
 summary: A simple brush whose size follows the distance the mouse travels each frame.
 ---

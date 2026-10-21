@@ -164,6 +164,16 @@
       ? asArray(fields.media || entry.media).map((source) => new URL(source, projectDirectory).href)
       : asArray(entry.media).map((source) => new URL(source, catalogDirectory).href);
 
+    // Use the runnable source instead of the abbreviated Markdown excerpt.
+    if (fields.source) {
+      const sourceResponse = await fetch(new URL(fields.source, projectDirectory));
+      if (!sourceResponse.ok) throw new Error(`Unable to load ${fields.source}`);
+      const source = (await sourceResponse.text()).trimEnd();
+      const sourceBlock = "```javascript\n" + source + "\n```";
+      const excerpt = /```(?:javascript|js)\s*\n[\s\S]*?```/;
+      body = excerpt.test(body) ? body.replace(excerpt, () => sourceBlock) : `${body}\n\n${sourceBlock}`;
+    }
+
     return {
       ...fields,
       body,
@@ -321,7 +331,38 @@
       if (code.language) codeElement.className = `language-${code.language}`;
       codeElement.textContent = code.lines.join("\n");
       pre.append(codeElement);
-      container.append(pre);
+      pre.tabIndex = 0;
+      pre.setAttribute("aria-label", "Scrollable code");
+      const block = document.createElement("div");
+      block.className = "code-block";
+      const copy = document.createElement("button");
+      copy.type = "button";
+      copy.className = "code-block__copy";
+      copy.setAttribute("aria-label", "Copy code");
+      copy.title = "Copy code";
+      const copyIcon = '<svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="1"/><path d="M16 8V4H4v12h4"/></svg>';
+      copy.innerHTML = copyIcon;
+      const status = document.createElement("span");
+      status.className = "sr-only";
+      status.setAttribute("role", "status");
+      copy.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(codeElement.textContent);
+          copy.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>';
+          status.textContent = "Code copied";
+          copy.title = "Copied";
+          window.setTimeout(() => { copy.innerHTML = copyIcon; copy.title = "Copy code"; status.textContent = ""; }, 1600);
+        } catch {
+          const range = document.createRange();
+          range.selectNodeContents(codeElement);
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          status.textContent = "Could not copy automatically. Code selected for manual copying.";
+        }
+      });
+      block.append(pre, copy, status);
+      container.append(block);
       code = null;
     };
 
@@ -384,7 +425,9 @@
     launch.setAttribute("aria-label", `Run ${project.title} sketch`);
     const label = document.createElement("span");
     label.className = "sketch-launch__label";
-    label.textContent = "▶ Run sketch";
+    label.setAttribute("aria-hidden", "true");
+    label.innerHTML = '<svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></svg>';
+    launch.title = "Run sketch";
     launch.append(image, label);
     launch.addEventListener("click", () => {
       const player = document.createElement("div");
@@ -398,7 +441,9 @@
       const stop = document.createElement("button");
       stop.type = "button";
       stop.className = "sketch-player__stop";
-      stop.textContent = "Back to preview";
+      stop.setAttribute("aria-label", "Back to preview");
+      stop.title = "Back to preview";
+      stop.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>';
       stop.addEventListener("click", () => {
         renderPreview(project);
         featureMedia.querySelector("button")?.focus();
@@ -421,8 +466,10 @@
 
   const bodyWithoutSummary = (project) => {
     const summary = (project.summary || "").trim();
-    const paragraphs = project.body.split(/\n\s*\n/);
-    return summary && paragraphs[0]?.trim() === summary ? paragraphs.slice(1).join("\n\n").trim() : project.body;
+    const firstParagraph = project.body.match(/^([\s\S]*?)(?:\n\s*\n|$)/);
+    return summary && firstParagraph?.[1].trim() === summary
+      ? project.body.slice(firstParagraph[0].length).trim()
+      : project.body;
   };
 
   const renderProject = (index, { focus = false, center = true } = {}) => {
