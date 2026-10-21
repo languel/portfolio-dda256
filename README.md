@@ -13,3 +13,5 @@ Detail views show a static preview first. Click the central play glyph or anywhe
 - Sketches use the iframe viewport (`windowWidth`, `windowHeight`) for canvas size. Shared `content/sketch.css` removes scrollbars; `content/sketch-runtime.js` preserves drawn marks during resize. Sketches with extra image buffers provide their own resize handler.
 
 Detail notes and scrollable code align with the preview. `source:` points to the runnable JavaScript, displayed in full with a hover/focus copy button. On touch devices, copy and close controls remain visible.
+
+Session summary and continuation notes: [October 21 handoff](docs/HANDOFF-2026-10-21.md).
